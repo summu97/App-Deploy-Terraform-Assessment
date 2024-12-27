@@ -1,6 +1,5 @@
-provider "google" {
-  project = var.project_id
-  region  = "us-central1"
+module "machines" {
+source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/machines"
 }
 
 # Health Check for Load Balancer
@@ -55,11 +54,13 @@ resource "google_compute_global_forwarding_rule" "app_forwarding_rule" {
 
 # Instance Group for VMs
 resource "google_compute_instance_group" "app_instance_group" {
-  name        = "${var.app_name}-instance-group"
-  zone        = var.zone
-  instances   = [
-    google_compute_instance.app_vm1.self_link,
-    google_compute_instance.app_vm2.self_link
+  name = "${var.app_name}-instance-group"
+  zone = var.zone
+
+  instances = [
+    module.machines.app_vm1_self_link,
+    module.machines.app_vm2_self_link
   ]
 }
+
 
