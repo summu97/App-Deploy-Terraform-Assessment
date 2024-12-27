@@ -16,8 +16,8 @@ resource "google_compute_instance" "app_vm1" {
     }
   }
   network_interface {
-    network = module.networking.network_self_link
-    subnetwork = module.networking.subnetwork_self_link
+    network    = var.network
+    subnetwork = var.subnetwork
     access_config {
     }
   }
@@ -52,8 +52,8 @@ resource "google_compute_instance" "app_vm2" {
     }
   }
   network_interface {
-    network = module.networking.network_self_link
-    subnetwork = module.networking.subnetwork_self_link
+    network    = var.network
+    subnetwork = var.subnetwork
     access_config {
     }
   }
@@ -88,8 +88,8 @@ resource "google_compute_instance" "db_vm" {
     }
   }
   network_interface {
-    network = module.networking.network_self_link
-    subnetwork = module.networking.subnetwork_self_link
+    network    = var.network
+    subnetwork = var.subnetwork
     access_config {
     }
   }
