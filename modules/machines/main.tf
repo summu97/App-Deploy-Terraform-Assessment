@@ -1,9 +1,9 @@
 module "networking" {
-source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/networking"
+  source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/networking"
 }
 
 module "service-account" {
-source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/service-account"
+  source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/service-account"
 }
 
 resource "google_compute_instance" "app_vm1" {
@@ -22,7 +22,6 @@ resource "google_compute_instance" "app_vm1" {
     }
   }
   
-  # Provisioner to copy and execute the startup script
   provisioner "file" {
     source      = "./app_vm_startup.sh"
     destination = "/tmp/app_vm_startup.sh"
@@ -35,8 +34,8 @@ resource "google_compute_instance" "app_vm1" {
     ]
     connection {
       type        = "ssh"
-      user        = "your-username"  # Replace with appropriate username
-      private_key = file("~/.ssh/id_rsa")  # Replace with your private key
+      user        = "your-username"
+      private_key = file("~/.ssh/id_rsa")
       host        = self.network_interface[0].access_config[0].nat_ip
     }
   }
@@ -58,7 +57,6 @@ resource "google_compute_instance" "app_vm2" {
     }
   }
 
-  # Provisioner to copy and execute the startup script
   provisioner "file" {
     source      = "./app_vm_startup.sh"
     destination = "/tmp/app_vm_startup.sh"
@@ -71,8 +69,8 @@ resource "google_compute_instance" "app_vm2" {
     ]
     connection {
       type        = "ssh"
-      user        = "your-username"  # Replace with appropriate username
-      private_key = file("~/.ssh/id_rsa")  # Replace with your private key
+      user        = "your-username"
+      private_key = file("~/.ssh/id_rsa")
       host        = self.network_interface[0].access_config[0].nat_ip
     }
   }
@@ -94,7 +92,6 @@ resource "google_compute_instance" "db_vm" {
     }
   }
 
-  # Provisioner to copy and execute database setup script (if needed)
   provisioner "file" {
     source      = "./mssql_vm_startup.sh"
     destination = "/tmp/mssql_vm_startup.sh"
@@ -107,9 +104,10 @@ resource "google_compute_instance" "db_vm" {
     ]
     connection {
       type        = "ssh"
-      user        = "your-username"  # Replace with appropriate username
-      private_key = file("~/.ssh/id_rsa")  # Replace with your private key
+      user        = "your-username"
+      private_key = file("~/.ssh/id_rsa")
       host        = self.network_interface[0].access_config[0].nat_ip
     }
   }
 }
+
