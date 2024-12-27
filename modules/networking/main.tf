@@ -5,25 +5,25 @@ resource "google_project_service" "dns" {
 }
 
 resource "google_compute_network" "custom_network" {
-  name           = "${terraform.workspace}-vpc"
+  name           = var.network_name
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "bastion" {
-  name          = "${terraform.workspace}-bastion-subnet"
+  name          = var.bastion_subnet_name
   region        = var.bastion_region
   network       = google_compute_network.custom_network.self_link
   ip_cidr_range = var.bastion_cidr
 }
 
 resource "google_compute_subnetwork" "private" {
-  name          = "${terraform.workspace}-private-subnet"
+  name          = var.private_subnet_name
   region        = var.private_region
   network       = google_compute_network.custom_network.self_link
   ip_cidr_range = var.private_cidr
 }
 resource "google_compute_firewall" "bastion-Http-ssh" {
-  name    = "${terraform.workspace}-bastion-firewall"
+  name    = "bastion-firewall"
   network = google_compute_network.custom_network.self_link
 
   # Allow rules
@@ -41,7 +41,7 @@ resource "google_compute_firewall" "bastion-Http-ssh" {
 }
 
 resource "google_compute_firewall" "private-ssh" {
-  name    = "${terraform.workspace}-private-firewall"
+  name    = "private-firewall"
   network = google_compute_network.custom_network.self_link
 
   # Allow rules
