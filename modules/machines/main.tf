@@ -20,14 +20,14 @@ resource "google_compute_instance" "app_vm1" {
   
   # Provisioner to copy and execute the startup script
   provisioner "file" {
-    source      = "./app_vm1_startup.sh"
-    destination = "/tmp/app_vm1_startup.sh"
+    source      = "./app_vm_startup.sh"
+    destination = "/tmp/app_vm_startup.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/app_vm1_startup.sh",
-      "sudo /tmp/app_vm1_startup.sh"
+      "chmod +x /tmp/app_vm_startup.sh",
+      "sudo /tmp/app_vm_startup.sh"
     ]
     connection {
       type        = "ssh"
@@ -55,14 +55,14 @@ resource "google_compute_instance" "app_vm2" {
 
   # Provisioner to copy and execute the startup script
   provisioner "file" {
-    source      = "./app_vm2_startup.sh"
-    destination = "/tmp/app_vm2_startup.sh"
+    source      = "./app_vm_startup.sh"
+    destination = "/tmp/app_vm_startup.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/app_vm2_startup.sh",
-      "sudo /tmp/app_vm2_startup.sh"
+      "chmod +x /tmp/app_vm_startup.sh",
+      "sudo /tmp/app_vm_startup.sh"
     ]
     connection {
       type        = "ssh"
@@ -90,14 +90,14 @@ resource "google_compute_instance" "db_vm" {
 
   # Provisioner to copy and execute database setup script (if needed)
   provisioner "file" {
-    source      = "./db_vm_startup.sh"
-    destination = "/tmp/db_vm_startup.sh"
+    source      = "./mssql_vm_startup.sh"
+    destination = "/tmp/mssql_vm_startup.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/db_vm_startup.sh",
-      "sudo /tmp/db_vm_startup.sh"
+      "chmod +x /tmp/mssql_vm_startup.sh",
+      "sudo /tmp/mssql_vm_startup.sh"
     ]
     connection {
       type        = "ssh"
