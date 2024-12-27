@@ -1,6 +1,9 @@
-provider "google" {
-  project = var.project_id
-  region  = var.region
+module "networking" {
+source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/networking"
+}
+
+module "service-account" {
+source = "/home/sumo1998sumanth/App-Deploy-Terraform-Asessment/terraform/modules/service-account"
 }
 
 resource "google_compute_instance" "app_vm1" {
@@ -13,7 +16,8 @@ resource "google_compute_instance" "app_vm1" {
     }
   }
   network_interface {
-    network = "default"
+    network = module.networking.network_self_link
+    subnetwork = module.networking.subnetwork_self_link
     access_config {
     }
   }
@@ -48,7 +52,8 @@ resource "google_compute_instance" "app_vm2" {
     }
   }
   network_interface {
-    network = "default"
+    network = module.networking.network_self_link
+    subnetwork = module.networking.subnetwork_self_link
     access_config {
     }
   }
@@ -83,7 +88,8 @@ resource "google_compute_instance" "db_vm" {
     }
   }
   network_interface {
-    network = "default"
+    network = module.networking.network_self_link
+    subnetwork = module.networking.subnetwork_self_link
     access_config {
     }
   }
