@@ -46,3 +46,13 @@ variable "db_custom_data" {
   description = "Custom data for the database VM"
   type        = string
 }
+
+variable "network" {
+  description = "network."
+  type        = string
+}
+
+variable "subnetwork" {
+  description = "subnetwork."
+  type        = string
+}
