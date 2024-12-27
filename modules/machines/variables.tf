@@ -34,7 +34,7 @@ variable "app_vm2_name" {
 variable "db_vm_name" {
   description = "Name of the database VM"
   type        = string
-  default     = "db-vm"
+  default     = "sql-vm"
 }
 
 variable "app_custom_data" {
