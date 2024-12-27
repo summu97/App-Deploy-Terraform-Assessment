@@ -54,14 +54,11 @@ resource "google_compute_global_forwarding_rule" "app_forwarding_rule" {
 
 # Instance Group for VMs
 resource "google_compute_instance_group" "app_instance_group" {
-  name = "${var.app_name}-instance-group"
+  name = "app-instance-group"
   zone = var.zone
 
   instances = [
-    module.machines.app_vm1_self_link,
-    module.machines.app_vm2_self_link
+    module.machines.app_vm1_private_ip,
+    module.machines.app_vm2_private_ip
   ]
 }
-
-
-
