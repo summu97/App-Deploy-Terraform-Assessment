@@ -57,5 +57,9 @@ resource "google_compute_global_forwarding_rule" "app_forwarding_rule" {
 resource "google_compute_instance_group" "app_instance_group" {
   name        = "${var.app_name}-instance-group"
   zone        = var.zone
-  instances   = var.vm_instance_ips
+  instances   = [
+    google_compute_instance.app_vm1.self_link,
+    google_compute_instance.app_vm2.self_link
+  ]
 }
+
