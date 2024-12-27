@@ -1,16 +1,19 @@
 variable "project_id" {
   description = "The GCP project ID"
   type        = string
+  default    = "ringed-hallway-417305"
 }
 
 variable "region" {
   description = "The region where the VMs will be created"
   type        = string
+  default     = "us-central1"
 }
 
 variable "zone" {
   description = "The zone where the VMs will be created"
   type        = string
+  default     = "us-central1-a"
 }
 
 variable "vm_machine_type" {
@@ -35,16 +38,6 @@ variable "db_vm_name" {
   description = "Name of the database VM"
   type        = string
   default     = "sql-vm"
-}
-
-variable "app_custom_data" {
-  description = "Custom data for application VMs"
-  type        = string
-}
-
-variable "db_custom_data" {
-  description = "Custom data for the database VM"
-  type        = string
 }
 
 variable "network" {
