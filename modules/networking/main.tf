@@ -29,7 +29,7 @@ resource "google_compute_firewall" "bastion-Http-ssh" {
   # Allow rules
   allow {
     protocol = "tcp"
-    ports    = ["22", "80"]
+    ports    = ["22"]
   }
   
   allow {
@@ -47,7 +47,7 @@ resource "google_compute_firewall" "private-ssh" {
   # Allow rules
   allow {
     protocol = "tcp"
-    ports    = ["22"]
+    ports    = ["22", "1433", "80", "8080"]
   }
   
   allow {
