@@ -9,7 +9,7 @@ resource "google_compute_instance" "app_vm1" {
   zone         = var.zone
   boot_disk {
     initialize_params {
-      image = "debian-11-bullseye-v20230816"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
   network_interface {
@@ -44,7 +44,7 @@ resource "google_compute_instance" "app_vm2" {
   zone         = var.zone
   boot_disk {
     initialize_params {
-      image = "debian-11-bullseye-v20230816"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
   network_interface {
@@ -79,7 +79,7 @@ resource "google_compute_instance" "db_vm" {
   zone         = var.zone
   boot_disk {
     initialize_params {
-      image = "debian-11-bullseye-v20230816"
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
     }
   }
   network_interface {
