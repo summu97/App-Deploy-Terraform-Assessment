@@ -64,3 +64,4 @@ resource "google_compute_instance_group" "app_instance_group" {
 }
 
 
+
