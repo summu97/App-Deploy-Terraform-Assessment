@@ -3,9 +3,19 @@ type = string
 default = "ringed-hallway-417305"
 }
 
+variable "network_name" {
+type = string
+default = "app-deploy-vpc"
+}
+
 variable "bastion_region" {
 type = string
 default = "us-central1"
+}
+
+variable "bastion_subnet_name" {
+type = string
+default = "bastion-subnet"
 }
 
 variable "bastion_cidr" {
@@ -16,6 +26,11 @@ default = "10.0.1.0/24"
 variable "private_region" {
 type = string
 default = "us-central1"
+}
+
+variable "private_subnet_name" {
+type = string
+default = "private-subnet"
 }
 
 variable "private_cidr" {
